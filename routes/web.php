@@ -34,4 +34,3 @@ use App\Http\Controllers\LaporBanjirController;
 
 Route::get('/lapor-banjir', [LaporBanjirController::class, 'form']);
 Route::post('/lapor-banjir/kirim', [LaporBanjirController::class, 'kirim']);
-

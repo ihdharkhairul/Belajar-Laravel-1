@@ -1,0 +1,79 @@
+import 'dart:collection';
+
+// ==========================================
+// 4. FUNGSI & PERCABANGAN
+// ==========================================
+String cekPrioritas(String jenisKerusakan) {
+  if (jenisKerusakan == "Listrik Mati") {
+    return "Prioritas Tinggi (1 Hari)";
+  } else {
+    return "Prioritas Normal (3 Hari)";
+  }
+}
+
+// ==========================================
+// 5. EXCEPTION HANDLING
+// ==========================================
+void validasiLaporan(String deskripsi) {
+  if (deskripsi.length < 10) {
+    throw Exception("Deskripsi terlalu singkat!");
+  }
+  print("Deskripsi laporan valid: \"$deskripsi\"");
+}
+
+void main() {
+  // ==========================================
+  // 2. NULL SAFETY
+  // ==========================================
+  String? namaPelapor; // boleh bernilai null
+  // Simulasikan pelapor yang tidak mengisi nama
+  namaPelapor = null;
+
+  print("=== LAPORAN MASUK ===");
+  print("Nama Pelapor : ${namaPelapor ?? "Mahasiswa Anonim"}");
+
+  // ==========================================
+  // 3. COLLECTION (QUEUE - FIFO)
+  // ==========================================
+  print("\n=== ANTREAN LAPORAN (QUEUE - FIFO) ===");
+  Queue<String> antreanPelapor = Queue<String>();
+
+  // Masukkan minimal 3 nama pelapor ke dalam antrean
+  antreanPelapor.add("Andi");
+  antreanPelapor.add("Budi");
+  antreanPelapor.add("Citra");
+
+  print("Antrean awal: $antreanPelapor");
+
+  // Simulasikan pelapor pertama selesai diproses (FIFO)
+  String pelaporDiproses = antreanPelapor.removeFirst();
+  print("Pelapor yang sedang diproses: $pelaporDiproses");
+  print("Sisa antrean setelah diproses: $antreanPelapor");
+
+  // ==========================================
+  // 4. FUNGSI & PERCABANGAN (pemanggilan)
+  // ==========================================
+  print("\n=== CEK PRIORITAS KERUSAKAN ===");
+  String jenisKerusakan1 = "Listrik Mati";
+  String jenisKerusakan2 = "Wi-Fi Terputus";
+
+  print("$jenisKerusakan1 -> ${cekPrioritas(jenisKerusakan1)}");
+  print("$jenisKerusakan2 -> ${cekPrioritas(jenisKerusakan2)}");
+
+  // ==========================================
+  // 5. EXCEPTION HANDLING (pemanggilan)
+  // ==========================================
+  print("\n=== VALIDASI DESKRIPSI LAPORAN ===");
+  try {
+    validasiLaporan("AC mati"); // panjang < 10 karakter -> akan error
+  } catch (e) {
+    print("Terjadi kesalahan: $e");
+  }
+
+  // Contoh deskripsi yang valid (opsional, untuk pembanding)
+  try {
+    validasiLaporan("AC di ruang kelas 301 mati total");
+  } catch (e) {
+    print("Terjadi kesalahan: $e");
+  }
+}
