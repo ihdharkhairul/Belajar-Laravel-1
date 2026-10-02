@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DataController;
 use App\Http\Controllers\LaporBanjirController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\BanjirController;
 
 // Data
 Route::get('/form', [DataController::class, 'form']);
@@ -44,3 +45,13 @@ Route::post('/lapor-banjir/kirim', [LaporBanjirController::class, 'kirim']);
 // Students
 Route::get('/students', [StudentController::class, 'index'])
     ->name('students.index');
+
+// LaporBanjir  Modul 3 - Blade Template
+Route::get('/banjir', [BanjirController::class, 'form'])
+    ->name('banjir.form');
+Route::post('/banjir/kirim', [BanjirController::class, 'kirim'])
+    ->name('banjir.kirim');
+Route::get('/banjir/konfirmasi', [BanjirController::class, 'konfirmasi'])
+    ->name('banjir.konfirmasi');
+Route::get('/banjir/daftar', [BanjirController::class, 'daftar'])
+    ->name('banjir.daftar');
